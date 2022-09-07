@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>註冊帳號</title>
+<style>
+
+	*{
+		margin:0px;
+		padding:0px;
+		box-sizing:border-box;
+	}
+
+    body{
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -40px;
+        bottom: -40px;
+        width: auto;
+        height: auto;
+        background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);
+        z-index: 0;
+    }
+	
+	.rg_layout{
+		width:900px;
+		height:500px;
+		border:8px solid #EEEEEE;
+		background:white;
+		margin:auto;
+		margin-top:200px;
+	}
+	
+	.left{
+		float:left;
+		margin:10px;
+	}
+	
+	.left > p:first-child{
+		color:#FFD026;
+		font-size:30px;
+	}
+	 
+	.center{
+		float:left;
+	}
+	
+	.right{
+		float:right;
+	}
+
+	.right > p:first-child{
+		font-size:15px;
+	}
+	
+	.td_left{
+		width:100px;
+		text-align:right;
+		height:45px;
+	}
+	
+	.td_right{
+		padding-left:50px;
+	}
+	
+	#username,#password,#email,#name,#phone,#birthday,#che{
+		width:251px;
+		height:32px;
+		border:1px solid #A6A6A6;
+		border-radius:5px;
+		padding-left:10px;
+	}
+
+	che{
+		width:110px;
+	}
+
+</style>
+</head>
+<body>
+
+	<div class="rg_layout">
+		<div class="left">
+			<p><b>新用戶註冊</b></p>
+		</div>
+
+		<div class="center">
+			<div class="from">
+				<form action="/myapp/login/" method="post">
+                    {% csrf_token %}
+					<table>
+						<tr>
+							<td class="td_left"><label for="username">用戶名</label></td>
+							<td class="td_right"><input type="text" name="username" id="username" placeholder="請輸入用戶名"></td>
+						</tr>
+						
+						<tr>
+							<td class="td_left"><label for="password">密碼</label></td>
+							<td class="td_right"><input type="password" name="password" id="password" placeholder="請輸入密碼"></td>
+						</tr>
+						
+						<tr>
+							<td class="td_left"><label for="email">Email</label></td>
+							<td class="td_right"><input type="email" name="email" id="email" placeholder="請輸入Email"></td>
+						</tr>
+						
+						<tr>
+							<td class="td_left"><label for="name">姓名</label></td>
+							<td class="td_right"><input type="text" name="name" id="name" placeholder="請輸入姓名"></td>
+						</tr>
+						
+						<tr>
+							<td class="td_left"><label for="phone">手機號</label></td>
+							<td class="td_right"><input type="text" name="phone" id="phone" placeholder="請輸入手機號"></td>
+						</tr>
+						
+						<tr>
+							<td class="td_left"><label >性別</label></td>
+							<td class="td_right"><input type="radio" name="gender" value="male">男
+							    <input type="radio" name="gender" value="female">女</td>
+						</tr>
+						
+						<tr>
+							<td class="td_left"><label for="birthday">出生日期</label></td>
+							<td class="td_right"><input type="date" name="birthday" id="birthday"></td>
+						</tr>
+						
+						<tr>
+                            <td colspan="2" align="center"><input type="submit" value="註冊"></td>
+						</tr>
+				
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

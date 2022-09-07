@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>將將好旅遊首頁</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+ 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	
+</head>
+<style>
+	
+	.paddtop{
+		padding-top:20px;
+		padding-left:50px;
+	}
+	
+	.front-page{
+	font-size:50px;
+	}
+	
+	.route{
+		float:left;
+		border:2px solid #73e600;
+		width:400px;
+		height:35px;
+		padding-left:5px;
+	}
+	
+	.button{
+		float:left;
+		border:1px solid #73e600;
+		width:90px;
+		height:35px;
+		background-color:#73e600;
+		text-align:center;
+		line-height:35px;
+		font-size:20px;	
+	}	
+	
+	.x{
+		margin-top:0px;
+		margin-left:200px;
+		width:1500px;
+	}
+
+	.thumbnail{
+		margin-left:3px;
+	}
+	
+	.su{
+		margin-top:50px;
+		font-size:35px;
+		margin-left:200px;
+		width:1300px;
+		height:35px;
+	}
+	
+	.j{
+		border-bottom:2px solid #ffc900;
+		margin-top:20px;
+		padding:5px;
+		width:1500px;
+		font-size:25px;
+	}
+
+.a{
+	font-size:25px;
+}
+
+
+.modal-content {
+background-color: burlywood;
+}
+
+.remember {
+margin-bottom: 20px;
+}
+
+
+	
+</style>
+<body>
+<!-- 1.頁眉 -->
+
+<header class="container-fluid">
+    <div class="row paddtop">
+        <div class="col-md-4 front-page">
+            <b>醬醬好旅遊</b>
+        </div>
+
+        <div class="col-md-5">
+            <!--<input class="route" placeholder="請輸入路線名稱"> -->
+            <form action="/myapp/newtab/" method="post">
+                {% csrf_token %}
+                <div class="route">
+                    <label for="blood">地區:</label>
+                    <select id="blood" name="blood">
+                        <option value="A">台北</option>
+                        <option value="B">基隆</option>
+                        <option value="C">宜蘭</option>
+                        <option value="D">桃園</option>
+                        <option value="E">新竹</option>
+                    </select>
+
+                    <label for="bookdate">出發日期：</label>
+                    <input type="date" id="bookdate" placeholder="2014-09-18" name="date1">
+
+                    <label for="bookdate">結束日期：</label>
+                    <input type="date" id="bookdate" placeholder="2014-09-18" name="date2">
+                </div>
+
+                <button type="submit" class="button"> 搜索 </button>
+            </form>
+        </div>
+
+        <div class="col-md-3 a">
+            <!--
+            <form action="/myapp/NewFile/" method="post">
+            <input type="submit" value="登出">-->
+            {% csrf_token %}
+            <a href="../NewFile" type="button" class="member">登出</a>
+            </form>
+        </div>
+    </div>
+<!-- 導航條 -->
+    <div class="row">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <!-- 漢堡 -->
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/myapp/front_page/">首頁</a>
+                </div>
+              </div>
+            </nav>
+        </div>
+
+<!-- 輪播圖 -->
+<div class="row">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="4000">
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="../../static/img/carousel_1.jpg">
+                    <div class="carousel-caption"></div>
+                </div>
+                    <div class="item">
+                        <img src="../../static/img/carousel_2.jpg">
+                        <div class="carousel-caption"></div>
+                    </div>
+
+                    <div class="item">
+                        <img src="../../static/img/carousel_3.jpg">
+                        <div class="carousel-caption"></div>
+                   </div>
+            </div>
+
+<!-- 箭頭導航條 -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+</div>
+</header>
+<!-- 主體 -->
+<!-- 按鈕 -->
+<div class="container su">
+    <span>話題城市 &nbsp; &nbsp; / &nbsp; &nbsp; </span>
+    <input type="button" class="btn slide-one" value="台北">
+    <input type="button" class="btn slide-two" value="台中">
+    <input type="button" class="btn slide-three" value="台南">
+</div>
+<hr style="width:1500px; background-color:#ffc900; height:2px;border:none;"/>
+<!-- 控制按鈕 -->
+<script>
+    $(function(){
+
+        // 循环轮播到某个特定的帧
+        $(".slide-one").click(function(){
+            $("#myCarousel").carousel(0);
+        });
+        $(".slide-two").click(function(){
+            $("#myCarousel").carousel(1);
+        });
+        $(".slide-three").click(function(){
+            $("#myCarousel").carousel(2);
+        });
+    });
+
+</script>
+<!-- 旅遊項目 -->
+<div id="myCarousel" class="carousel slide" data-interval="1000000">
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="container x">
+                <div class="row">
+                    <div class="col-md-3" >
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=a837ffbf-f390-4c8e-84cc-4f59f492da7a&GroupID=22TN502GLO-V">
+                            <img src="../../static/img/TPE1.jpg"></a>
+                            <p>台北旅遊｜《無圍牆博物館》信義四四南村牽牛花、松菸文創園區、和興炭坑遺址、神秘蝙蝠洞</p>
+                            <font color="red">$ 399</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=c01f5221-75bd-4c8e-a86d-6e255c187198&GroupID=22TN428FEN-ZP">
+                            <img src="../../static/img/TPE2.jpg" height="221.45"></a>
+                            <p>【每月一物】悠遊東北角│九份懷舊山城。台版龐貝遺址。水湳洞陰陽海。金瓜石地質公園小健行一日</p>
+                            <font color="red">$ 299</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=33c59e2e-3d7c-4611-8755-2b2c189597f9&GroupID=22TN504BBG-K">
+                            <img src="../../static/img/TPE3.jpg"></a>
+                            <p>北桃竹遊│繡球花海.滿月圓森林.和平島公園.正濱彩色屋.霧隱城.雲夢山丘.雙五星.九份大溪老街四日</p>
+                            <font color="red">$ 9,999</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=cba82680-4c9a-4cda-981b-9ea8c8783c48&GroupID=22TN502ETT-V">
+                            <img src="../../static/img/TPE4.jpg" height="221.45"></a>
+                            <p>蕨妙內洞｜內洞森林遊樂區·烏來老街美食‧烏來瀑布·台車體驗‧網美系玻璃屋景觀下午茶1日</p>
+                            <font color="red">$ 699</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="container x">
+                <div class="row">
+                    <div class="col-md-3" >
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=72ebc035-cbd5-4570-8c55-a3581cb6e23d&GroupID=22TM427WK1-T">
+                            <img src="../../static/img/TXG1.jpg"></a>
+                            <p>【天天出發】Together一起旅行．武陵農場．森情綠意南谷一日（一人成行）</p>
+                            <font color="red">$ 1,300</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=75645211-6aac-471a-9f2f-b0672a4b2103&GroupID=22TM427ECC-T">
+                            <img src="../../static/img/TXG2.jpg"></a>
+                            <p>【天天出發．四人成行】森林療癒～八仙山之美．戀夏薰衣草．鮮採菇菇．住進老爺行旅美術館裡2日</p>
+                            <font color="red">$ 4,500</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=58690009-2c0c-4745-aa9d-021b9d05530b&GroupID=22TM429TEM-T">
+                            <img src="../../static/img/TXG3.jpg"></a>
+                            <p>【台中森癒大雪山】埡口/天池/雪山神木‧三輪車逛鹿港老街‧彩色繽紛董家花田‧逢甲商旅酒店2日</p>
+                            <font color="red">$ 2,999</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=d4eea160-34aa-4ed9-8af3-a5a6cf337a87&GroupID=22TM429CL1-T">
+                            <img src="../../static/img/TXG4.jpg"></a>
+                            <p>【天天出發】亞洲最大神木群～馬告生態園區（神木園）！棲蘭森呼吸一日（一人成行）</p>
+                            <font color="red">$ 1,650</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="container x">
+                <div class="row">
+                    <div class="col-md-3" >
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=efd0d9b3-ba90-4f46-9131-1ec57a63d7ad&GroupID=22TS505TNM-K">
+                            <img src="../../static/img/TNN1.jpg"></a>
+                            <p>台南旅遊｜【新化林場螢光相伴】雙文化園區.深緣及水善糖.大目降.新化老街.夜間觀察體驗林場漫步一日</p>
+                            <font color="red">$ 1,099</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=1be33e1e-69dc-4195-ad6b-c8723897c1fb&GroupID=22TS507OT2-T">
+                            <img src="../../static/img/TNN2.jpg"></a>
+                            <p>台南旅遊｜玩世界風｜日式建築｜歐洲小鎮｜江南湖水岸｜峇厘島度假風桂田2日</p>
+                            <font color="red">$ 4,699</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=64b0d46d-3606-44ce-ad04-dd054b151385&GroupID=22TS507GU1-K">
+                            <img src="../../static/img/TNN3.jpg"></a>
+                            <p>台南旅遊｜【歸覓出遊】歸仁小旅行.七甲花卉.手作植栽DIY.傳承台菜.最新三井Outlet一日</p>
+                            <font color="red">$ 1,199</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=185862c3-9615-48ff-8a00-54b4de0576a8&GroupID=22TS511NN2-T">
+                            <img src="../../static/img/TNN4.jpg"></a>
+                            <p>台南旅遊｜檜意森活村.北門水晶教堂.井仔腳瓦盤鹽田.鹽鹵豆花DIY.富驛2日</p>
+                            <font color="red">$ 1,999</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 國外 -->
+<div class="container x">
+        <div class="row j">
+            <span>國外遊</span>
+        </div>
+    <div class="row pagination">
+        <div class="col-md-3" >
+            <div class="thumbnail">
+                <a href="https://travel.liontravel.com/detail?NormGroupID=63a4a85c-7d63-4272-8cb9-376122c43dcc&GroupID=22SV502BRR1-T&fr=cg451T0301C0101M01">
+                <img src="../../static/img/foreign1.jpg"></a>
+                <p>北越旅遊｜預購機加酒五星飯店五日,三十六古街精心五心級飯店住宿,逛胡志明市區</p>
+                <font color="red">$ 28,500</font>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="https://travel.liontravel.com/detail?NormGroupID=ea0ae6ef-35fa-432c-925b-2ff75a81b536&GroupID=22ST504A-T&fr=cg451T0301C0101M01">
+                <img src="../../static/img/foreign2.jpg"></a>
+                <p>預購泰國自由行五日,自費夜遊湄南河,泰式按摩體驗訪水門市場,玉佛寺</p>
+                    <font color="red">$ 26,800</font>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="https://travel.liontravel.com/detail?NormGroupID=9343719d-8c31-47bc-956f-2203109de592&GroupID=22JT706CIQ-T&fr=cg451T0301C0101M01">
+                <img src="../../static/img/foreign3.jpg"></a>
+                <p>欣賞富士山日出—御來光 季節限定，安排專業登山嚮導</p>
+                <font color="red">$ 26,99</font>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="thumbnail">
+                <a href="https://travel.liontravel.com/search?DepartureID=&ArriveID=%2c&GoDateStart=2022-07-01&GoDateEnd=2022-08-31&IsEnsureGroup=false&IsSold=true&GroupID=&Keywords=Fuji.Rock&TravelType=0&fr=cg451T0301C0101M01">
+                <img src="../../static/img/foreign4.jpg"></a>
+                <p>亞洲最大音樂盛事，音樂迷必參與精心安排食宿交通，享受森林浴、露營</p>
+                <font color="red">$ 2,600</font>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 國內 -->
+    <div class="container x">
+        <div class="row j">
+            <span>國內遊</span>
+        </div>
+        <div class="row">
+            <div class="col-md-4" >
+                <div class="thumbnail">
+                    <img src="../../static/img/illustration.jpg" >
+                </div>
+            </div>
+            <div class="col-md-8 paddtop">
+                <div class="row ">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=69888f24-2686-414c-b001-3e7f6501c7d0&GroupID=22TS526STB-T&fr=cg451T0701C0101M03">
+                            <img src="../../static/img/domestic1.jpg"></a>
+                            <p>嘉義旅遊｜阿里山火車.鐵道工法.古蹟探秘.幻霧山城二日遊｜大人囝仔</p>
+                            <font color="red">$ 2,499</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=409067ad-5d0a-4cff-9521-35f36a1b336f&fr=cg451T0701C0102M03&GroupID=22TN504LZB-K">
+                            <img src="../../static/img/domestic2.jpg"></a>
+                            <p>新竹旅遊｜【鐵道旅遊.高鐵】觀巴.雪霸觀霧.雪霸休閒農場.雲霧步道.野馬瞰山２日</p>
+                            <font color="red">$ 5,799</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=8da7880f-160b-4f3f-9935-38cd7f8acd99&fr=cg451T0701C0103M03&GroupID=22TS505LH1-T">
+                            <img src="../../static/img/domestic3.jpg"></a>
+                            <p>高雄屏東旅遊｜藍皮解憂號.南迴記憶.屏水山逢.五星福華3日｜大人囝仔</p>
+                            <font color="red">$ 5,999</font>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=ac7237f5-58d8-439d-8bd7-c076ddcd857b&GroupID=22TR529FU1-T">
+                            <img src="../../static/img/domestic4.jpg"></a>
+                            <p>|鳴日廚房×菁華饗宴|宜花東縱谷緩行.龜山海景微醺沙龍.台東在地小旅行2日(南港出發)</p>
+                            <font color="red">$ 35,900</font>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=85681b04-e467-4b7a-82f1-bd95b597a35c&GroupID=22TS505TCH-X&fr=cg451T0701C0102M02">
+                            <img src="../../static/img/domestic5.jpg"></a>
+                            <p>屏東旅遊【藍皮解憂號觀光列車】金崙部落導讀.地底洞穴三日(台中和彰化和嘉義出發)</p>
+                            <font color="red">$ 9,399</font>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="thumbnail">
+                            <a href="https://travel.liontravel.com/detail?NormGroupID=11741371-7aaa-41dc-9a9d-8d7986bfeda7&GroupID=22TM507PU1-T&fr=cg451T0701C0103M02">
+                            <img src="../../static/img/domestic6.jpg"></a>
+                            <p>【觀雲海Ｘ迎曙光】武界部落：雲的故鄉‧日月潭湖光山色‧日系唯美風建築二日</p>
+                            <font color="red">$ 5,399</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

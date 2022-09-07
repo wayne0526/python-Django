@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>登入失敗</title>
+</head>
+<body>
+
+<h1>登入失敗</h1>
+	<form action="/myapp/NewFile/" method="post">
+     	{% csrf_token %}
+			<table>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" value="回首頁"></td>
+				</tr>				
+			</table>
+	</form>
+</body>
+</html>
